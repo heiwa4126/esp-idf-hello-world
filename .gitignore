@@ -18,3 +18,4 @@ wheels/
 tmp/
 *.tmp
 *.dump
+sdkconfig.old

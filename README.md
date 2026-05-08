@@ -1,6 +1,6 @@
 # esp-idf-hello-world
 
-[esp\-idf/examples/get\-started/hello\_world at master · espressif/esp\-idf · GitHub](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world)
+(2026-05) [esp\-idf/examples/get\-started/hello_world at master · espressif/esp\-idf · GitHub](https://github.com/espressif/esp-idf/tree/master/examples/get-started/hello_world)
 をやってみた。
 
 環境は
@@ -8,21 +8,20 @@
 - ESP32-WROVER のカメラ付きのやつ([FNK0060](https://www.amazon.co.jp/dp/B0CJJHXD1W))
 - Windows11 の WSL2(Ubuntu)上で開発
 - IDF は 6.1
-- EIM なしでやってみた。やっぱいろいろ辛いので、EIM で試す
+- [EIM (ESP-IDF Installation Manager)](https://docs.espressif.com/projects/idf-im-ui/en/latest/) なしでやってみたら、やっぱいろいろ辛いので、EIM 試す
 
-手順はこんな感じ
+手順はこんな感じ:
 
 0. Windows 側で usbipd.exe(`winget install dorssel.usbipd-win`) と [CH340 ドライバ](https://www.wch-ic.com/search?q=CH340&t=downloads)(ESP32-WROVER だから)
 1. [USB デバイスを接続する](https://learn.microsoft.com/ja-jp/windows/wsl/connect-usb#attach-a-usb-device) で WSL に接続
 1. [ステップ1\. 前提条件のインストール](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup-legacy.html#step-1-install-prerequisites)
 1. [ステップ2\. ESP\-IDFを取得する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup-legacy.html#step-2-get-esp-idf) - でかい。2.4G あった
-3. [ステップ3．ツールをセットアップする](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup-legacy.html#step-3-set-up-the-tools) - とりあえず毎回 `. $HOME/esp/esp-idf/export.sh` を実行することにする
-4. [プロジェクトを開始する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#start-a-project) - パスは`~/esp/hello_world` でなくてもどこでも OK
-5. [プロジェクトの設定](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#configure-your-project) - TUI のメニューは何もしないで `Q`
-6. [プロジェクトを構築する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#build-the-project)
-7. [デバイスにフラッシュする](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#flash-onto-the-device) - ここで PORT に `/dev/ttyUSB0`
-8. [出力を監視する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#monitor-the-output)  - ここでも PORT に `/dev/ttyUSB0`
-
+1. [ステップ3．ツールをセットアップする](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup-legacy.html#step-3-set-up-the-tools) - とりあえず毎回 `. $HOME/esp/esp-idf/export.sh` を実行することにする
+1. [プロジェクトを開始する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#start-a-project) - パスは`~/esp/hello_world` でなくてもどこでも OK
+1. [プロジェクトの設定](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#configure-your-project) - TUI のメニューは何もしないで `Q`
+1. [プロジェクトを構築する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#build-the-project)
+1. [デバイスにフラッシュする](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#flash-onto-the-device) - ここで PORT に `/dev/ttyUSB0`
+1. [出力を監視する](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-start-project.html#monitor-the-output) - ここでも PORT に `/dev/ttyUSB0`
 
 毎回
 
@@ -30,7 +29,92 @@
 . $HOME/esp/esp-idf/export.sh
 code .
 ```
+
 は面倒。あと IDF の VScode 拡張がいろいろうるさいのもやだ。EIM にするといいらしいのであとで試す。
+
+## 出力例
+
+`idf.py -p /dev/ttyUSB0 monitor` の出力例
+
+```console
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x1b (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0040,len:6272
+load:0x40078000,len:15848
+load:0x40080400,len:3988
+--- 0x40080400: _invalid_pc_placeholder at /home/heiwa/esp/esp-idf/components/xtensa/xtensa_vectors.S:2259
+entry 0x40080644
+--- 0x40080644: call_start_cpu0 at /home/heiwa/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+I (27) boot: ESP-IDF v6.1-dev-4506-g88add2513f 2nd stage bootloader
+I (27) boot: compile time May  7 2026 18:26:21
+I (27) boot: Multicore bootloader
+I (30) boot: chip revision: v3.1
+I (33) boot.esp32: SPI Speed      : 40MHz
+I (37) boot.esp32: SPI Mode       : DIO
+I (40) boot.esp32: SPI Flash Size : 2MB
+I (44) boot: Enabling RNG early entropy source...
+I (48) boot: Partition Table:
+I (51) boot: ## Label            Usage          Type ST Offset   Length
+I (57) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (64) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (70) boot:  2 factory          factory app      00 00 00010000 00100000
+I (77) boot: End of partition table
+I (80) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=06dach ( 28076) map
+I (98) esp_image: segment 1: paddr=00016dd4 vaddr=3ffb0000 size=0282ch ( 10284) load
+I (102) esp_image: segment 2: paddr=00019608 vaddr=40080000 size=06a10h ( 27152) load
+I (114) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=0b0d8h ( 45272) map
+I (130) esp_image: segment 4: paddr=0002b100 vaddr=40086a10 size=03a30h ( 14896) load
+I (136) esp_image: segment 5: paddr=0002eb38 vaddr=50000000 size=00028h (    40) load
+I (142) boot: Loaded app from partition at offset 0x10000
+I (142) boot: Disabling RNG early entropy source...
+I (156) cpu_start: Multicore app
+I (164) cpu_start: GPIO 3 and 1 are used as console UART I/O pins
+I (164) cpu_start: Pro cpu start user code
+I (164) cpu_start: cpu freq: 160000000 Hz
+I (166) app_init: Application information:
+I (170) app_init: Project name:     hello_world
+I (174) app_init: App version:      1
+I (178) app_init: Compile time:     May  7 2026 18:26:20
+I (183) app_init: ELF file SHA256:  bfa35979b...
+I (187) app_init: ESP-IDF:          v6.1-dev-4506-g88add2513f
+I (192) efuse_init: Min chip rev:     v0.0
+I (196) efuse_init: Max chip rev:     v3.99
+I (200) efuse_init: Chip rev:         v3.1
+I (204) heap_init: Initializing. RAM available for dynamic allocation:
+I (210) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (215) heap_init: At 3FFB3168 len 0002CE98 (179 KiB): DRAM
+I (221) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (226) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (232) heap_init: At 4008A440 len 00015BC0 (86 KiB): IRAM
+I (238) spi_flash: detected chip: generic
+I (240) spi_flash: flash io: dio
+W (243) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.
+I (257) main_task: Started on CPU0
+I (267) main_task: Calling app_main()
+Hello world!
+This is esp32 chip with 2 CPU core(s), WiFi/BTBLE, silicon revision v3.1, 2MB external flash
+Minimum free heap size: 304620 bytes
+Restarting in 10 seconds...
+Restarting in 9 seconds...
+Restarting in 8 seconds...
+Restarting in 7 seconds...
+Restarting in 6 seconds...
+Restarting in 5 seconds...
+Restarting in 4 seconds...
+Restarting in 3 seconds...
+Restarting in 2 seconds...
+Restarting in 1 seconds...
+Restarting in 0 seconds...
+Restarting now.
+ets Jul 29 2019 12:21:46
+(繰り返し)
+```
+
+---
 
 以下オリジナルのまま
 
