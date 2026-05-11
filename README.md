@@ -114,6 +114,25 @@ ets Jul 29 2019 12:21:46
 (繰り返し)
 ```
 
+## EIM版
+
+pytestやqemuが使えるようにした
+
+```sh
+sudo apt-get install -y libgcrypt20 libglib2.0-0 libpixman-1-0 libsdl2-2.0-0 libslirp0
+eim install -i v6.0.1 --idf-features=ci
+source ~/.espressif/tools/activate_idf_v6.0.1.sh
+python ~/.espressif/v6.0.1/esp-idf/tools/idf_tools.py install
+python ~/.espressif/v6.0.1/esp-idf/tools/idf_tools.py install qemu-xtensa qemu-riscv32
+```
+
+で、
+
+- `source ~/.espressif/v6.0.1/esp-idf/export.sh`
+- `source ~/.espressif/tools/activate_idf_v6.0.1.sh`
+
+がちがうもの問題に対処するため、activate_idf_v6.0.1.shのほうに qemu をみつけてパスに追加するパッチをあてた。
+
 ---
 
 以下オリジナルのまま
