@@ -1,0 +1,5 @@
+# Ignore-list for pytest-ignore-test-results
+# One pattern per line. Inline comments are supported.
+# Examples:
+# test_hello_world.py::test_hello_world[esp32]
+# test_*.py::test_flaky_*

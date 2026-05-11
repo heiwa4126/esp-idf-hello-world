@@ -1,13 +1,18 @@
 {
-	"idf.currentSetup": "/home/heiwa/.espressif/v6.0.1/esp-idf",
-	"idf.customExtraVars": {},
 	"clangd.path": "/home/heiwa/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin/clangd",
 	"clangd.arguments": [
 		"--background-index",
 		"--query-driver=**",
 		"--compile-commands-dir=/home/heiwa/works/esp32/hello_world/build"
 	],
+	"idf.currentSetup": "/home/heiwa/.espressif/v6.0.1/esp-idf",
+	"idf.customTerminalExecutable": "/usr/bin/bash",
+	"idf.customTerminalExecutableArgs": ["-l"],
+	"idf.customExtraVars": {},
+	"idf.flashType": "UART",
 	"idf.port": "/dev/ttyUSB0",
 	"idf.monitorPort": "/dev/ttyUSB0",
-	"idf.flashType": "UART"
+	"cmake.configureOnOpen": false,
+	"cmake.configureOnEdit": false,
+	"cmake.revealLog": "never"
 }
