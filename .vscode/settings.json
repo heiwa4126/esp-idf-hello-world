@@ -5,6 +5,8 @@
 		"--query-driver=**",
 		"--compile-commands-dir=/home/heiwa/works/esp32/hello_world/build"
 	],
+	"C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 	"idf.currentSetup": "/home/heiwa/.espressif/v6.0.1/esp-idf",
 	"idf.customTerminalExecutable": "/usr/bin/bash",
 	"idf.customTerminalExecutableArgs": ["-l"],
